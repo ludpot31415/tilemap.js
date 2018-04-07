@@ -63,8 +63,29 @@ function Tilemap() {
             return(false);
         }
         
+
+        //Outer rectangle / wall (tileValue)
+        for (y = y1; y < y2+1; y++) {
+            for (x = x1; x < x2+1; x++) {
+                if (y == y1 || y == y2) {
+                    if (x => x1 && x <= x2) {
+                        this.map[y][x] = tileValue;
+                    }
+                } else {
+                    this.map[y][x1] = tileValue;
+                    this.map[y][x2] = tileValue;
+                }
+            }
+        }
         
-        //Create rectangle
+        //Rectangle / Fill (fillTileValue)
+        for (y = y1; y < y2; y++) {
+            for (x = x1+1; x < x2; x++) {
+                this.map[y][x] = fillTileValue;
+            }
+        }
+        
+            
     }
 
     //Replace by tileValue
