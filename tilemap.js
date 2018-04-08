@@ -5,6 +5,7 @@ function Tilemap() {
     this.height = 10;
     this.fillTile = 0;
     this.map = [];
+    this.cells = [];
 
     //Generate tilemap with defined fillTile
     this.create = function() {
@@ -144,7 +145,22 @@ function Tilemap() {
         }
         console.log(xString);
     }
+
+    this.createCell = function(x,y) {
+        this.cells.push(new TilemapCell(x,y));
+    }
 }
+
+function TilemapCell(x,y,tileValue, valueDictionary = {}) {
+    if (arguments.length < 2) {
+        throw new Error("createCell requires 2 arguments. Vector is now 0,0.")
+        x = 0;
+        y = 0;
+    }
+    this.pos = createVector(x,y);
+    this.tileValue = "#";
+}
+
 document.addEventListener('DOMContentLoaded', function() {
     //QuickTest
     var tilemap = new Tilemap(); tilemap.create()
